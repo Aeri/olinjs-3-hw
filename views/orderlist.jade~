@@ -4,11 +4,12 @@ block scripts
   script(type='text/javascript', src='/javascripts/orderlist.js')
 
 block content
-  h1= List of Current Orders
+  h1
+    | List of Current Orders
   form(id="form")
     each order in orders
       p
         input(type='button', class="button", value='Complete', id="#{order._id}")) 
         | #{order.customerName}: 
         each ingredient in order.ingredients
-          |#{ingredient.name},
+          |#{ingredient.id},

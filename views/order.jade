@@ -10,7 +10,7 @@ block content
     input(id='customerName')
   each ingredient in ingredients
     p
-      input(type='checkbox', name=ingredient.name)
+      input(type='checkbox', name=ingredient.id)
       | #{ingredient.name}
   p 
     input(type='button', value='Submit', id='Submit')

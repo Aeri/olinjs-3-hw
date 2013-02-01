@@ -16,12 +16,8 @@ exports.create = function(req, res) {
   var orderIngredients = [];
   console.log(req.body.ingredients);
   reqIngredients = req.body.ingredients || [];
-  reqIngredients.forEach(function (ingredient) {
-    Ing.findOne({'name': ingredient}, function(err, db_ingredients){
-    orderIngredients.push(db_ingredients);});
-  });
-  console.log(orderIngredients);
-  buildOrder(orderIngredients, req.body.customerName);
+  console.log(reqIngredients);
+  buildOrder(reqIngredients, req.body.customerName);
   res.send("Order saved.");
 };
 
