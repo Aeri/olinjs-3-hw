@@ -12,7 +12,7 @@ var express = require('express')
   , ingmodel = require('./public/javascripts/ingmodel')
   , mongoose = require('mongoose')
   , order = require('./routes/order')
-  , jquery = require('jquery');
+  , $ = require('jquery');
 
 var app = express();
 
@@ -36,9 +36,8 @@ app.get('/', routes.index);
 app.get('/ingredient/new', ingredient.new);
 app.post('/ingredient/create', ingredient.create);
 app.get('/order', order.list);
-app.post('order/done', order.complete);
+app.post('/order/done', order.complete);
 app.get('/order/new', order.new);
-app.post('/order/create', order.create);
 app.post('/order/create', order.create);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

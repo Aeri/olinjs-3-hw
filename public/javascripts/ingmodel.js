@@ -11,10 +11,8 @@ var orderSchema = mon.Schema({
   ingredients : [{ type: mon.Schema.Types.ObjectId, ref: 'Ingredient' }]
 });
 
-var newIng = mon.model('newIng', ingSchema);
+var Ingredient = mon.model('Ingredient', ingSchema);
 var Order = mon.model('Order', orderSchema);
 
-module.exports = Order;
-module.exports = newIng;
-
-
+exports.Ingredient = Ingredient;
+exports.Order = Order;

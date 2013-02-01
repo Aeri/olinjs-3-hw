@@ -1,8 +1,9 @@
-
+var ingmodel = require('../public/javascripts/ingmodel');
+var nOrder = ingmodel.Order;
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Jessica \'s Burgers' });
+  res.render('index', { title: 'Jessica\'s Burgers' });
 };

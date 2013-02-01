@@ -1,10 +1,10 @@
 var ingmodel = require('../public/javascripts/ingmodel');
-var nOrder = ingmodel.Order;
-var nIng = ingmodel.newIng;
+var Order = ingmodel.Order;
+var Ing = ingmodel.Ingredient;
 
 exports.new = function(req, res) {
   console.log("Piping is working.");
-  nIng.find({}).exec(function(err, db_ingredients) {
+  Ing.find({}).exec(function(err, db_ingredients) {
     if (err)
       console.log("Error rendering order");
     res.render("order", {title:"Add Order.", ingredients: db_ingredients});
@@ -15,20 +15,19 @@ exports.create = function(req, res) {
   console.log("Burger ordered.");
   var orderIngredients = [];
   console.log(req.body.ingredients);
-  req.body.ingredients.forEach(function (ingredient) {
-    nIng.findOne({'name': ingredient}, function(err, db_ingredient){
-    orderIngredients.push(db_ingredient);
-      if (orderIngredients.length == req.body.ingredients.length) {
-        console.log(orderIngredients);
-        buildOrder(orderIngredients, req.body.customerName);
-      }
-      });
+  reqIngredients = req.body.ingredients || [];
+  reqIngredients.forEach(function (ingredient) {
+    Ing.findOne({'name': ingredient}, function(err, db_ingredients){
+    orderIngredients.push(db_ingredients);});
   });
+  console.log(orderIngredients);
+  buildOrder(orderIngredients, req.body.customerName);
+  res.send("Order saved.");
 };
 
 exports.list = function(req, res) {
   console.log("Piping is working.");
-  nOrder.find({}).populate('ingredients').exec(function(err, db_orders) {
+  Order.find({}).populate('ingredients').exec(function(err, db_orders) {
     if (err)
       console.log("Error rendering order list.");
     res.render("orderlist", {title:"Current Orders", orders: db_orders});
@@ -37,9 +36,10 @@ exports.list = function(req, res) {
 
 exports.complete = function(req, res) {
   console.log("Order completed.");
-  nOrder.remove({_id: req.body.id}).exec(function (err, order) {
+  Order.remove({_id: req.body.id}).exec(function (err, order) {
     if (err)
       console.log("Error", err)
+    res.send("Order completed.");
   });
 };
 

@@ -1,17 +1,16 @@
 extends layout
 
 block scripts
-  script(type='text/javascript', src='/javascripts/neworder.js')
-
+  script(type ='text/javascript', src='/javascripts/neworder.js')
 block content
 
   h1 Order a Burger
 
-    p Name:
-      input(id='customerName')
-    each ingredient in ingredients
-      p
-        input(type='checkbox', name=ingredient.name) 
-        | #{ingredient.name}
-    p 
-      input(type='button', value='Submit', id='Submit')
+  p Name:
+    input(id='customerName')
+  each ingredient in ingredients
+    p
+      input(type='checkbox', name=ingredient.name)
+      | #{ingredient.name}
+  p 
+    input(type='button', value='Submit', id='Submit')

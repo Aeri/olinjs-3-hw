@@ -1,10 +1,14 @@
 $(document).ready(function() {
-	var selected = new Array();
-	$('#Submit').click(function (){
-		var customerName = $('#customerName').val();
-		$("input:checkbox:checked").each(function () {
-			selected.push($(this).attr('name'));
-		});
-		$.post('./new', { customerName : customerName, ingredients : selected });
-	});
+  console.log("Line 2");
+  var selectedIng = new Array();
+  console.log("Line 4");
+  $('#Submit').click(function (){
+    console.log("Has been clicked");
+    var customerName = $('#customerName').val();
+    console.log("Got names.");
+    $("input:checkbox:checked").each(function () {
+      selectedIng.push($(this).attr('name'));
+    });
+    $.post('./create', { customerName : customerName, ingredients : selected });
+  });
 });
