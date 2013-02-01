@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='post', action='/ingredient/create')
+    | New Ingredient:
+    input(name='ingredient')
+    | Price:
+    input(name='price')
+    button('type='submit')
+      | Done
